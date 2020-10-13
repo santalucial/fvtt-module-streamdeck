@@ -10,6 +10,9 @@ export default function Menu() {
       <NavLink activeClassName="active" to="/partyhud">
         Party HUD
       </NavLink>
+      <NavLink activeClassName="active" to="/partyhudlite">
+        Party HUD Lite
+      </NavLink>
     </div>
   );
 }

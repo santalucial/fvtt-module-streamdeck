@@ -21,7 +21,11 @@ export default function PartyHUD() {
       className="float-left"
       style={{ maxWidth: "300px", marginLeft: 0 }}
     >
-      {[...game.actors].map(
+      {[
+        ...game.actors.filter((actor) => {
+          return actor.permission === 3;
+        }),
+      ].map(
         (actor) =>
           actor.isPC && (
             <Media
