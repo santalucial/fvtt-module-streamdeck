@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 import Login from './components/login';
 import PartyHUD from "./components/partyhud";
 import PartyHUDLite from "./components/partyhudlite";
+import PartyEffects from "./components/partyeffects";
 import {  GameContext } from "./components/contextManager";
 
 // import Native from "./components/native";
@@ -33,6 +34,8 @@ function App() {
               <Route path="/menu" component={Menu} />
               <Route path="/partyhud" component={PartyHUD} />
               <Route path="/partyhudlite" component={PartyHUDLite} />
+              <Route path="/partyeffects" component={PartyEffects} />
+              
               <Route path="/" ><Login setGame={setGame}></Login></Route>
             </Switch>
           </div>

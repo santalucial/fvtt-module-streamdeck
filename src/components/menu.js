@@ -13,6 +13,9 @@ export default function Menu() {
       <NavLink activeClassName="active" to="/partyhudlite">
         Party HUD Lite
       </NavLink>
+      <NavLink activeClassName="active" to="/partyeffects">
+        Party effect statuses
+      </NavLink>
     </div>
   );
 }
