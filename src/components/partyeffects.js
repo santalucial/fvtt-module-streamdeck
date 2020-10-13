@@ -69,8 +69,14 @@ export default function PartyEffects() {
               }}
             >
               <Col md={8} style={{ overflow: "hidden" }}>
-                <p class="marquee">
-                  <span>
+                <p className="marquee">
+                  <span
+                    style={{
+                      display: "inline-block",
+                      paddingLeft: "100%",
+                      animation: "marquee 10s linear infinite",
+                    }}
+                  >
                     {actorToken(actor)
                       .effects.map(
                         (ef) =>
@@ -81,8 +87,15 @@ export default function PartyEffects() {
                     &nbsp;
                   </span>
                 </p>
-                <p class="marquee marquee2">
-                  <span>
+                <p className="marquee marquee2">
+                  <span
+                    style={{
+                      display: "inline-block",
+                      paddingLeft: "100%",
+                      animation: "marquee 10s linear infinite",
+                      animationDelay: "5s",
+                    }}
+                  >
                     {actorToken(actor)
                       .effects.map(
                         (ef) =>
