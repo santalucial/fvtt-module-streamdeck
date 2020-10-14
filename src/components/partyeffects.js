@@ -2,10 +2,12 @@ import React, { useContext, useEffect, useState, useRef } from "react";
 import { GameContext } from "./contextManager";
 import { Button, Row, Col, Media, Container } from "react-bootstrap";
 import { gsap, Linear, TimelineMax } from "gsap";
+import { CSSPlugin } from 'gsap/CSSPlugin'
+
 import Marquee from "./marquee";
 
 import "./partyeffects.css";
-
+gsap.registerPlugin(CSSPlugin)
 function useForceUpdate() {
   const [value, setValue] = useState(0); // integer state
   return () => setValue((value) => ++value); // update the state to force render
