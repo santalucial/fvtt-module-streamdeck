@@ -3,11 +3,14 @@ import { Row, Button } from "react-bootstrap";
 import { Game } from "./TinyClient/tiny";
 import io from "socket.io-client";
 import {  withRouter} from 'react-router-dom';
-
+import {init} from './contextManager'
+import qs from 'qs'
 
 function Login(props) {
   // const username = useFormInput("");
   // const password = useFormInput("");
+
+
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(true);
   const [options, setOptions] = useState([]);
@@ -16,6 +19,7 @@ function Login(props) {
   const selectRef = useRef();
   const passwdRef = useRef();
 
+  
   // handle button click of login form
   const handleLogin = async () => {
     const data = new URLSearchParams();
@@ -41,11 +45,12 @@ function Login(props) {
     }
 
     // let socket = await this.connect(sessionId);
-    await Game.create( () =>{}).then((game) => {
-      window.game = game;
-      props.setGame(game);
-      game.initialize();
-    });
+    await init (props.setGame);
+    // Game.create( () =>{}).then((game) => {
+    //   window.game = game;
+    //   props.setGame(game);
+    //   game.initialize();
+    // });
 
     props.history.push("menu");
   };
@@ -53,6 +58,12 @@ function Login(props) {
 
 
   useEffect(() => {
+    const query = qs.parse(props.location.search, { ignoreQueryPrefix: true })
+  if (query.page !== undefined)
+  {
+     props.history.push(query.page);
+     return () => {}
+  }
     fetch("/join", {
       method: "get", // *GET, POST, PUT, DELETE, etc.
       mode: "no-cors", // no-cors, *cors, same-origin
@@ -75,7 +86,9 @@ function Login(props) {
 
     return () => {};
   }, []);
-  window.test = options;
+
+  
+
   return (
     <Row
       className=" align-content-center"
@@ -140,4 +153,4 @@ const useFormInput = (initialValue) => {
   };
 };
 
-export default withRouter(Login)
+export default Login

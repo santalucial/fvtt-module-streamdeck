@@ -117,7 +117,7 @@ class Game {
       const sessionId = cookies.session;
       if ( !sessionId ) {
         console.error(`No client session ID available, redirecting to login`);
-        window.location.href = ROUTE_PREFIX ? `/${ROUTE_PREFIX}/join` : "/join";
+        // window.location.href = ROUTE_PREFIX ? `/${ROUTE_PREFIX}/join` : "/join";
       }
       console.log(`${vtt} | Attempting connection using session ${sessionId}`);
   
@@ -153,7 +153,7 @@ class Game {
       return new Promise((resolve, reject) => {
         const socket = io.connect({
           path: socketPath,
-            transports: ["websocket"],    // Require websocket transport instead of XHR polling
+            // transports: ["websocket"],    // Require websocket transport instead of XHR polling
           upgrade: false,               // Prevent "upgrading" to websocket since it is enforced
           reconnection: true,           // Automatically reconnect
           reconnectionDelay: 1000,

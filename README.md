@@ -3,6 +3,9 @@
 This modules makes some views requested for streaming purpose available at:
 `https://example.com/modules/streamdeck/index.html`
 
+individual pages will be available at:
+`https://example.com/modules/streamdeck/index.html?page=partyeffects`
+
 # Installation
 In the setup page of FVTT, Install the module by entering the following URL : `https://raw.githubusercontent.com/santalucial/fvtt-module-streamdeck/master/module.json`
 

@@ -1,6 +1,9 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState, useRef } from "react";
 import { GameContext } from "./contextManager";
 import { Button, Row, Col, Media, Container } from "react-bootstrap";
+import { gsap, Linear, TimelineMax } from "gsap";
+import Marquee from "./marquee";
+
 import "./partyeffects.css";
 
 function useForceUpdate() {
@@ -17,11 +20,6 @@ export default function PartyEffects() {
     game.actors.filter((actor) => {
       return actor.permission === 3;
     });
-
-  const currentScene = () => game.scenes.find((scene) => scene.active === true);
-
-  const actorToken = (actor) =>
-    currentScene(game).data.tokens.find((tk) => tk.actorId === actor._id);
 
   useEffect(() => {
     game.hookUpdate(forceUpdate);
@@ -46,15 +44,11 @@ export default function PartyEffects() {
         }
       }}
     >
-      {[
-        ...game.actors.filter((actor) => {
-          return actor.permission === 3;
-        }),
-      ].map(
-        (actor) =>
+      {[...actors()].map(
+        (actor, i) =>
           actor.isPC && (
             <Row
-              key={actor._id}
+              key={i}
               style={{
                 // borderBottom: "2px solid #6f6c66",
                 wordSpacing: "1px",
@@ -69,43 +63,7 @@ export default function PartyEffects() {
               }}
             >
               <Col md={8} style={{ overflow: "hidden" }}>
-                <p className="marquee">
-                  <span
-                    style={{
-                      display: "inline-block",
-                      paddingLeft: "100%",
-                      animation: "marquee 10s linear infinite",
-                    }}
-                  >
-                    {actorToken(actor)
-                      .effects.map(
-                        (ef) =>
-                          ef.split("/")[ef.split("/").length - 1].split(".")[0]
-                      )
-                      .join(", ") +
-                      ((actorToken(actor).effects.length > 0 && ",") || "")}
-                    &nbsp;
-                  </span>
-                </p>
-                <p className="marquee marquee2">
-                  <span
-                    style={{
-                      display: "inline-block",
-                      paddingLeft: "100%",
-                      animation: "marquee 10s linear infinite",
-                      animationDelay: "5s",
-                    }}
-                  >
-                    {actorToken(actor)
-                      .effects.map(
-                        (ef) =>
-                          ef.split("/")[ef.split("/").length - 1].split(".")[0]
-                      )
-                      .join(", ") +
-                      ((actorToken(actor).effects.length > 0 && ",") || "")}
-                    &nbsp;
-                  </span>
-                </p>
+                <Marquee size={size} actor={actor} />
               </Col>
               <Col md={{ span: 4 }}>{actor.data.name}</Col>
             </Row>
