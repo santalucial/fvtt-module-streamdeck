@@ -25,7 +25,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: 10.x
-    - run: npm ci
+    - run: yarn
     - run: npm run build --if-present
     # create a zip file with all files required by the module to add to the release
     - run: cp ./module.json ./build/module.json && cd build && zip -r ../module.zip module.json static/ asset-manifest.json index.html manifest.json precache-manifes* robots.txt service-worker.js
