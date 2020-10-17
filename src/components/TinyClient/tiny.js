@@ -1,4 +1,4 @@
-import{Combat} from './entities/combat'
+// import{Combat} from './entities/combat'
 import io from "socket.io-client";
 import {Actors} from './entities/actors'
 import {Entity} from './entities/entity'
@@ -149,11 +149,10 @@ class Game {
     static async connect(sessionId) {
        const socketPath = ROUTE_PREFIX ? `/${ROUTE_PREFIX}/socket.io` : "/socket.io";
       // const socketPath = "/";
-
       return new Promise((resolve, reject) => {
         const socket = io.connect({
           path: socketPath,
-            // transports: ["websocket"],    // Require websocket transport instead of XHR polling
+          transports: (process.env.NODE_ENV === 'development' && ['polling', 'websocket']) || ["websocket"],    // Require websocket transport instead of XHR polling
           upgrade: false,               // Prevent "upgrading" to websocket since it is enforced
           reconnection: true,           // Automatically reconnect
           reconnectionDelay: 1000,
