@@ -1,7 +1,7 @@
 {
     "name": "streamdeck",
     "title": "Streaming views",
-    "description": "<p>Provides access to the FVTT API through HTTP for external integration</p><p>See README for details.</p>",
+    "description": "<p>Provides access to a set of views usable to get real time game info in obs</p><p>See README for details.</p>",
     "version": "0.0.6",
     "author": "Slash",
     "scripts": [],
